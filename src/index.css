@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --theme-bg: #0A0A0A;
+  --theme-surf: #111111;
+  --theme-card: #151515;
+  --theme-border: rgba(225, 255, 0, 0.15);
+  --theme-text-primary: #FFFFFF;
+  --theme-text-secondary: rgba(255, 255, 255, 0.7);
+  --theme-accent: #E1FF00;
+}
+
+
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Global 4px border-radius design system constraint */
+  --radius-xs: 4px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --radius-3xl: 4px;
+  --radius-4xl: 4px;
+  --radius: 4px;
+
+  /* Custom design token system */
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-surf: var(--theme-surf);
+  --color-theme-card: var(--theme-card);
+  --color-theme-border: var(--theme-border);
+  --color-theme-text: var(--theme-text-primary);
+  --color-theme-muted: var(--theme-text-secondary);
+  --color-theme-accent: var(--theme-accent);
+
+  /* Legacy mapping so other layouts are perfectly legacy-compatible and retrofitted */
+  --color-brand-black: var(--theme-text-primary);
+  --color-brand-offwhite: var(--theme-bg);
+  --color-brand-gray: var(--theme-border);
+  --color-brand-darkgray: var(--theme-surf);
+  --color-brand-midgray: var(--theme-text-secondary);
+
+  /* Tailwind 4 overriding font size variables to snap strictly to specified allowed step sizes */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+  --font-size-6xl: 60px;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--theme-bg);
+  color: var(--theme-text-primary);
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text-primary);
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
+::selection {
+  background-color: var(--theme-accent);
+  color: var(--theme-bg);
+}
+
+/* Base custom interactive transitions */
+.theme-transition {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, opacity 350ms ease, transform 350ms ease;
+}
+
+/* Premium Frosted Glass Button Style to support outstanding legibility & distance separation */
+.btn-glass-secondary {
+  position: relative;
+  /* Genuine high-transparency frosted glass effect based on reference image */
+  background-color: rgba(18, 18, 18, 0.45) !important;
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  
+  /* Extremely elegant semi-transparent brand border */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: var(--theme-text-primary) !important;
+  
+  /* Double layer of shadow: outer soft dark separation and inner specular edge-light reflection */
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15) !important;
+  
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+
+
+/* Custom reaction transitions on hover: glass gloss + accent outline lightup + shadow pulse */
+.btn-glass-secondary:hover {
+  background-color: rgba(24, 24, 24, 0.6) !important;
+  border-color: var(--theme-accent) !important; /* Glows up in vivid neon lime green brand accent */
+  color: var(--theme-text-primary) !important;
+  
+  /* Vibrant depth reaction */
+  box-shadow: 0 16px 40px 0 rgba(225, 255, 0, 0.18), 0 8px 24px 0 rgba(0, 0, 0, 0.5), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-2px);
+}
+
+
+
+/* Active tap reaction */
+.btn-glass-secondary:active {
+  transform: translateY(0px) scale(0.97) !important;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Stunning Unified Menu Glassmorphism Class as seen in the reference photo */
+.menu-glass-morphic {
+  position: relative;
+  background-color: rgba(10, 10, 10, 0.45) !important;
+  backdrop-filter: blur(28px) saturate(220%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(220%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+
+
+/* Custom Hide scrollbars but keep functionality if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Automatically turn all cards into premium frosted glass panes */
+.bg-theme-card, [class*="bg-theme-card"] {
+  background-color: rgba(21, 21, 21, 0.45) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid var(--theme-border) !important;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+
+
+/* Premium Frosted Glass button with accented details and borders - perfectly readable and see-through in both themes */
+.btn-glass-primary {
+  position: relative;
+  background-color: rgba(225, 255, 0, 0.12) !important;
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1.5px solid var(--theme-accent) !important;
+  color: var(--theme-accent) !important;
+  box-shadow: 0 10px 30px -10px rgba(225, 255, 0, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15) !important;
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-glass-primary:hover {
+  background-color: var(--theme-accent) !important;
+  color: #0A0A0A !important;
+  border-color: var(--theme-accent) !important;
+  box-shadow: 0 16px 40px -6px rgba(225, 255, 0, 0.4), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+
+
+/* ==========================================================================
+   TYPOGRAPHY DESIGN SYSTEM - MAXIMUM READABILITY & MODERN PORTFOLIO STANDARDS
+   ========================================================================== */
+
+/* Hero Section:
+   H1: 72px (desktop) / 48px (mobile)
+   Subtitle: 32px (desktop) / 24px (mobile) */
+.text-hero-h1 {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+@media (min-width: 768px) {
+  .text-hero-h1 {
+    font-size: 72px;
+  }
+}
+
+.text-hero-sub {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+@media (min-width: 768px) {
+  .text-hero-sub {
+    font-size: 32px;
+  }
+}
+
+/* Major Section Headings:
+   H2: 36px (desktop) / 28px (mobile)
+   H3: 28px (desktop) / 22px (mobile) */
+.text-h2-fluid {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .text-h2-fluid {
+    font-size: 36px;
+  }
+}
+
+.text-h3-fluid {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .text-h3-fluid {
+    font-size: 28px;
+  }
+}
+
+/* Cards / Feature Blocks / Service Details:
+   H4 / Card Title: 24px (desktop) / 20px (mobile)
+   H5 / Small Heading: 20px (desktop) / 16px (mobile)
+   Card Description / Body Large: 16px
+   Metadata / Tags / Labels / Badges: 14px
+   Buttons / Microcopy inside card: 12px */
+.text-card-h4-fluid {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .text-card-h4-fluid {
+    font-size: 24px;
+  }
+}
+
+.text-h5-fluid {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  .text-h5-fluid {
+    font-size: 20px;
+  }
+}
+
+/* Card Description / Body Large: 16px (exact, body text minimum, line-height 1.5) */
+.text-body-large-fluid {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Body Text / Paragraphs / Lists:
+   Body Standard: 16px (line-height 1.6)
+   Lists / Features: 16px (line-height 1.5)
+   Microcopy: 12px (minimum) */
+.text-body-standard-fluid {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-lists-fluid {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Microcopy & buttons inside/outside card: 12px minimum */
+.text-small-fluid {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Pricing Cards (UI/UX, Graphic Design, Motion Graphics, Video Editing, Brand Identity):
+   Card Title: 24px (desktop) / 20px (mobile)
+   Body text: 14px
+   Metadata / tags / badges: 14px
+   Buttons / Microcopy: 12px */
+.text-price-pkg-fluid {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .text-price-pkg-fluid {
+    font-size: 24px;
+  }
+}
+
+/* Pricing - Price: 44px (desktop) / 32px (mobile) */
+.text-price-fluid {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+@media (min-width: 768px) {
+  .text-price-fluid {
+    font-size: 44px;
+  }
+}
+
+.text-price-feat-fluid {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Service Section - Service Name: 28px (desktop) / 22px (mobile) */
+.text-service-name-fluid {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 750;
+}
+@media (min-width: 768px) {
+  .text-service-name-fluid {
+    font-size: 28px;
+  }
+}
+
+/* Service Section - Service Description: 16px */
+.text-service-desc-fluid {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Service Section - Deliverables / Feature Lists: 16px */
+.text-service-feat-fluid {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Contact Section - All text (headings, labels, input / textarea, contact info): 14px */
+.text-contact-h-fluid {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-contact-label-fluid {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.text-contact-input-fluid {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-contact-info-fluid {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* Footer Section - Footer Email: 24px (desktop) / 20px (mobile) */
+.text-footer-email-fluid {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .text-footer-email-fluid {
+    font-size: 24px;
+  }
+}
+
+/* Footer Section - Footer Phone: 18px */
+.text-footer-phone-fluid {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Footer Section - Footer Headings: 16px */
+.text-footer-heading-fluid {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* Footer Section - Footer Links: 14px */
+.text-footer-link-fluid {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Footer Section - Copyright: 14px */
+.text-footer-copyright-fluid {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Exact 14px Card Metadata / Tags / Labels / Badges */
+.text-metadata-fluid {
+  font-size: 14px;
+  line-height: 1.5;
+}
+

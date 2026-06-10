@@ -1,0 +1,47 @@
+.card-spotlight {
+  position: relative;
+  border: 1px solid var(--theme-border) !important;
+  background-color: rgba(21, 21, 21, 0.45) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(225, 255, 0, 0.15); /* Uses the primary neon green brand color! */
+  transition: border-color 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure the non-absolute child content stays above the spotlight radial gradient overlay */
+.card-spotlight > *:not(.absolute):not([class*="absolute"]) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Allow absolute items to remain absolute positioned relative to the card */
+.card-spotlight > .absolute,
+.card-spotlight > [class*="absolute"] {
+  position: absolute !important;
+  z-index: 3 !important;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.8;
+}
+
+

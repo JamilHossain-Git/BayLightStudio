@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Baylight Studio",
+  "description": "The official homepage of jamil.studio_lab, a premier creative agency focusing on high-end design, web development, branding, and SEO.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
